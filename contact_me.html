@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <!-- Meta Info -->
+    <meta charset="UTF-8">
+
+    <title>Contact Me</title>
+    <!--Styling portion-->
+    <style>
+      body {
+      background-color:lightcyan;
+      }
+      h1, p {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        clear:left;
+      }
+      form {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      }
+      .column {
+        /* Makes it take the left side of the screen and responsive */
+        float: left;
+        width: 50%;
+        /*height: 333px;*/
+        background-color: lightgray;
+        /*padding: 10px;*/
+      }
+      .imageColumn {
+        /* Makes it take the right side of the screen and responsive */
+        float:right;
+        width: 50%;
+        /*padding: 10px;*/
+      }
+
+      .btn {
+        /* Style send, psuedo-submit button */
+        display: block;
+        width: 100%;
+        border: none;
+        background-color: lightsteelblue;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+      <main>
+
+        <div class="column">
+          <!--Header-->
+          <h1>Contact Me</h1>
+          <!--Form information-->
+          <p>This form will accept information from the user if they want to get in contact with me regarding job applications.This is practice for a form I plan to make for my future website. I chose this because I know I will do this in the future and so I can look back at it in the near future as a reference.</p>
+          <form action="#">
+            <table>
+              <!--Accepts input and validates as the user types-->
+              <tr><td>First Name:</td><td><input type="text" name="fname" placeholder="First Name" oninput="checkFName()" id="fName"></td><td><span id="fNameValid"></span></td></tr>
+              <tr><td>Last Name:</td><td><input type="text" name="lname" placeholder="Last Name" oninput="checkLName()" id="lName"></td><td><span id="lNameValid"></span></td></tr>
+              <tr><td>Phone (+63)</td><td><input type="text" name="phonenum" placeholder="9xx-xxx-xxxx" oninput="checkPhone()" id="phoneNum"></td><td><span id="phoneValid"></span></td></tr>
+              <tr><td>Email:</td><td><input type="text" name="email" placeholder="example@email.com" oninput="checkEmail()" id="eMail"></td><td><span id="emailValid"></span></td></tr>
+              <tr><td rowspan="4">Gender:</td></tr>
+              <tr><td><input type="radio" name="gender" value="Female">Female</td></tr>
+              <tr><td><input type="radio" name="gender" value="Male">Male</td> </tr>
+              <tr><td><input type="radio" name="gender" value="Other" checked>Prefer not to say</td></tr>
+              <tr><td>Get Promo Emails?</td><td><input type="checkbox" name="promotions"></td></tr>
+              <tr><td>Message</td><td><textarea name="message" placeholder="Insert message here."></textarea></td></tr>
+              <!--Pseudo submit button, asks for confirmation through checkConfirm() -->
+              <tr><td><input type="button" class="btn" href="#" value="Send" onclick="checkConfirm()"></td><td><span id="Confirm"></span></td></tr>
+            </table>
+          </form>
+        </div>
+        <!--Image not mine, taken from-->
+        <img src="https://mydigiads.com/contactus.jpg" class="imageColumn" >
+        <p><br><br>P.S. Image not mine.</p>
+      </main>
+
+      <script>
+        //sets parameter to check if everything entered is valid
+        var proceed=false;
+
+        function checkFName() {
+          //checks if first name consists of a-z characters and between 2-20 characters
+          var name=document.getElementById("fName").value;
+          var check = /^[A-Za-z\s\'\-]{2,20}$/;
+      
+            //output cofirmation or error to "fNameValid"
+            if (check.test(name)) {
+              document.getElementById("fNameValid").innerHTML = "Valid";
+              //since it's valid, proceed variable is changed to TRUE
+              proceed=true;
+            }
+            else {
+              document.getElementById("fNameValid").innerHTML = "Invalid";
+              proceed=false;
+            }
+        }   
+        function checkLName() {
+          //checks if last name consists of a-z characters and between 2-20 characters
+          var name=document.getElementById("lName").value;
+          //output cofirmation or error to "lNameValid"
+          var check = /^[A-Za-z\s\'\-]{2,20}$/;
+            if (check.test(name)) {
+              document.getElementById("lNameValid").innerHTML = "Valid";
+              //since it's valid, proceed variable is changed to TRUE              
+              proceed=true;
+            }
+            else {
+              document.getElementById("lNameValid").innerHTML = "Invalid";
+              proceed=false;
+            }
+        }   
+        function checkPhone() {
+          //checks if number entered follows the given format 9xx-xxx-xxxx (PH number system)
+          var num=document.getElementById("phoneNum").value;
+          var check = /^\(?9?([0-9]{2})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+            //output cofirmation or error to "phoneValid"
+            if (check.test(num)) {
+              document.getElementById("phoneValid").innerHTML = "Valid";
+              //since it's valid, proceed variable is changed to TRUE
+              proceed=true;
+            }
+            else {
+              document.getElementById("phoneValid").innerHTML = "Invalid";
+              proceed=false;
+            }
+        }   
+        function checkEmail () {
+          //checks if email follows given format example@email.com
+          var mail=document.getElementById("eMail").value;
+          var check = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
+          //output confirmation or error to "emailValid"
+          if (check.test(mail)) {
+              document.getElementById("emailValid").innerHTML = "Valid";
+              //since it's valid, proceed variable is changed to TRUE
+              proceed=true;
+          }
+          else {
+              document.getElementById("emailValid").innerHTML = "Invalid";
+              proceed=false;
+          } 
+        }
+        function checkConfirm() {
+          var txt;
+          //once everything is done, function checks the variable proceed meaning everything is valid
+          if (proceed) {
+            //the user then receives an alert to confirm and asked to press OK or CANCEL
+            if (confirm("Confirm?"))
+              txt = "Confirmed!";
+            else
+              txt = "Try again.";
+          } 
+          else {
+            //if there is an invalid response they are prompted to try again
+            txt = "Invalid response/s. Try again.";
+         }
+          //output confirmation or error to "Confirm"
+          document.getElementById("Confirm").innerHTML = txt;
+          }
+      </script>
+
+  </body>
+
+</html>
