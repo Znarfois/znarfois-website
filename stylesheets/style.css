@@ -1,0 +1,40 @@
+body {
+    background-color: aquamarine;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+
+}
+
+h1 {
+    font-size: 150%;
+    color: #333333;
+    text-align: center;
+    background-color: 
+}
+
+header {
+    background: #444444;
+    text-align: center;
+}
+
+nav {
+    font-variant: small-caps;
+    font-size: 80%;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+details {
+    font-style: oblique;
+}
+
+summary {
+    font-style: normal;
+}
+
+footer {
+    background-color: #444444;
+}
+
+#linkedIn {
+    text-align: center;
+    width: 100%;
+}
